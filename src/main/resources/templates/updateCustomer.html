@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+
+    input[type=submit] {
+        width: 100%;
+        background-color: #43ffdd;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+        background-color: chartreuse;
+    }
+
+    div {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+
+</head>
+<body style="background-color:aliceblue;">
+
+<h2>Update Customer</h2>
+
+<div>
+    <form action="/updateCustomer" method="post">
+        <label for="customerID">Customer ID </label>
+        <input type="text" id="customerID" name="customerIDhidden" disabled th:value="${customer.customerID}">
+        <input type="hidden"  name="customerID" th:value="${customer.customerID}">
+        <label for="fName">First Name </label>
+        <input type="text" id="fName" name="fName" th:value="${customer.fName}">
+        <label for="lName">Last Name  </label>
+        <input type="text" id="lName" name="lName" th:value="${customer.lName}">
+        <label for="adress">Address </label>
+        <input type="text" id="adress" name="address" th:value="${customer.address}">
+        <label for="zipCode">Zip Code </label>
+        <input type="text" id="zipCode" name="zipCode" th:value="${customer.zipCode}">
+        <label for="city">City </label>
+        <input type="text" id="city" name="city" th:value="${customer.city}">
+        <label for="phoneNumber">Phonenumber </label>
+        <input type="text" id="phoneNumber" name="phoneNumber" th:value="${customer.phoneNumber}">
+        <label for="eMail">Em@il </label>
+        <input type="text" id="eMail" name="eMail" th:value="${customer.eMail}">
+        <label for="driverLicenseNumber">Driverlicense Number</label>
+        <input type="text" id="driverLicenseNumber" name="driverLicenseNumber" th:value="${customer.driverLicenseNumber}">
+        <label for="driverSinceDate">Driver Since Date </label>
+        <input type="text" id="driverSinceDate" name="driverSinceDate" th:value="${customer.driverSinceDate}">
+
+        <input type="submit" value="Save Changes">
+
+
+        </form>
+</div>
+
+     <div class="updateTable">
+     </div>
+
+
+     </body>
+     </html>
