@@ -65,22 +65,30 @@ public class KailuaRepo {
     }
 
     public void updateCustomer( Customer customer){
-        String sqlUpdate = "UPDATE customer c, residence r, contact cc " +
-                "SET c.customer_first_name = ?, c.customer_last_name = ?, c.customer_licensenumber = ?, " +
-                "c.customer_driver_since_date = ?, " +
-                "r.customer_address = ?, r.customer_city = ?, r.customer_zip_code = ?, " +
-                "cc.customer_phonenumber = ?, cc.customer_email = ? " +
-                "WHERE c.customer_id = ? AND r.customerResidence_id AND cc.customerContact_id = ?;";
-        template.update(sqlUpdate,customer.getfName(),customer.getlName(),customer.getDriverLicenseNumber(),customer.getDriverSinceDate(),customer.getAddress(),customer.getCity(),customer.getZipCode(),customer.getPhoneNumber(),customer.geteMail(),customer.getCustomerID(),customer.getCustomerID(),customer.getCustomerID());
+        String sqlUpdateCustomer = "UPDATE customer SET customer_first_name = ?, customer_last_name = ?, customer_licensenumber = ?, customer_driver_since_date = ? WHERE customer_id = ?";
+            template.update(sqlUpdateCustomer, customer.getfName(), customer.getlName(), customer.getDriverLicenseNumber(), customer.getDriverSinceDate(), customer.getCustomerID());
+        String sqlUpdateResidence = "UPDATE residence SET customer_address = ?, customer_city = ?, customer_zip_code = ? WHERE customerResidence_id = ?";
+            template.update(sqlUpdateResidence, customer.getAddress(), customer.getCity(), customer.getZipCode(), customer.getCustomerID());
+        String sqlUpdateContact = " UPDATE contact SET customer_phonenumber = ?, customer_email = ? WHERE customerContact_id = ?";
+            template.update(sqlUpdateContact, customer.getPhoneNumber(), customer.geteMail(), customer.getCustomerID());
+
 
     }
 }
 
 /*
-String sqlUpdateCustomer = "UPDATE customer SET customer_first_name = ?, customer_last_name = ?, customer_licensenumber = ?, customer_driver_since_date = ? WHERE customer_id = ?";
-        template.update(sqlUpdateCustomer, customer.getfName(), customer.getlName(), customer.getDriverLicenseNumber(), customer.getDriverSinceDate(), customer.getCustomerID());
-        String sqlUpdateResidence = "UPDATE residence SET customer_address = ?, customer_city = ?, customer_zip_code = ? WHERE customerResidence_id = ?";
-        template.update(sqlUpdateResidence, customer.getAddress(), customer.getCity(), customer.getZipCode(), customer.getCustomerID());
-        String sqlUpdateContact = " UPDATE contact SET customer_phonenumber = ?, customer_email = ? WHERE customerContact_id = ?";
-        template.update(sqlUpdateContact, customer.getPhoneNumber(), customer.geteMail(), customer.getCustomerID());
+
+
+
+ String sqlUpdate = "UPDATE customer c, residence r, contact cc " +
+                "SET c.customer_first_name = ?, c.customer_last_name = ?, c.customer_licensenumber = ?, " +
+                "c.customer_driver_since_date = ?, " +
+                "r.customer_address = ?, r.customer_city = ?, r.customer_zip_code = ?, " +
+                "cc.customer_phonenumber = ?, cc.customer_email = ? " +
+                "WHERE c.customer_id = ? AND r.customerResidence_id AND cc.customerContact_id = ?";
+        template.update(sqlUpdate,customer.getfName(),customer.getlName(),customer.getDriverLicenseNumber(),
+        customer.getDriverSinceDate(),customer.getAddress(),customer.getCity(),customer.getZipCode(),
+        customer.getPhoneNumber(), customer.geteMail(),customer.getCustomerID(),
+        customer.getCustomerID(),customer.getCustomerID());
+
  */
