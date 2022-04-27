@@ -16,9 +16,10 @@ public class KailuaRepo {
     int antalCustomers = 0;
 
     public List<Customer> fetchCustomers() {
-        String sql = " SELECT c.customer_id as customerID, c.customer_first_name as fName, c.customer_last_name as lName, r.customer_address as address, " +
-                "r.customer_zip_code as zipCode,  r.customer_city as city, cc.customer_phonenumber as phoneNumber,  cc.customer_email as eMail," +
-                "c.customer_licensenumber as driverLicenseNumber, c.customer_driver_since_date as driverSinceDate " +
+        String sql = " SELECT c.customer_id as customerID, c.customer_first_name as fName, c.customer_last_name as lName," +
+                " r.customer_address as address, r.customer_zip_code as zipCode,  r.customer_city as city, " +
+                "cc.customer_phonenumber as phoneNumber, cc.customer_email as eMail, c.customer_licensenumber as driverLicenseNumber, " +
+                "c.customer_driver_since_date as driverSinceDate " +
                 "FROM customer c JOIN residence r ON c.customer_id = r.customerResidence_id " +
                 "JOIN contact cc ON r.customerResidence_id = cc.customerContact_id ";
         RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<>(Customer.class);
@@ -53,8 +54,9 @@ public class KailuaRepo {
     }
 
     public Customer findCustomerByID(int id){
-        String sqlCustomer = " SELECT c.customer_id as customerID, c.customer_first_name as fName, c.customer_last_name as lName, r.customer_address as address, " +
-                "r.customer_zip_code as zipCode,  r.customer_city as city, cc.customer_phonenumber as phoneNumber,  cc.customer_email as eMail," +
+        String sqlCustomer = " SELECT c.customer_id as customerID, c.customer_first_name as fName, c.customer_last_name as lName," +
+                " r.customer_address as address,  r.customer_zip_code as zipCode,  r.customer_city as city, " +
+                "cc.customer_phonenumber as phoneNumber,  cc.customer_email as eMail," +
                 "c.customer_licensenumber as driverLicenseNumber, c.customer_driver_since_date as driverSinceDate " +
                 "FROM customer c JOIN residence r ON c.customer_id = r.customerResidence_id " +
                 "JOIN contact cc ON r.customerResidence_id = cc.customerContact_id " +
